@@ -1,6 +1,7 @@
 package com.promineotech.bakery.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.promineotech.bakery.entity.Customer;
 
@@ -25,5 +26,5 @@ public interface CustomerService {
 
 //UPDATE
 
- Customer updateCustomer(int customerId, Customer updatedCustomer);
+	 Customer updateCustomer(int customerId, Customer updatedCustomer);
 }

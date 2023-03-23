@@ -6,6 +6,7 @@ import com.promineotech.bakery.entity.Items;
 
 public interface ItemsDao {
 
+	//method to read all bakery items
 	List<Items> fetchAllItems();
 
 }

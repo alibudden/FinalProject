@@ -1,6 +1,8 @@
 package com.promineotech.bakery.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import com.promineotech.bakery.entity.Customer;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
@@ -23,10 +26,12 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
 @Validated
 @RequestMapping("/customers")
-@OpenAPIDefinition(info = @Info(title = "Customer List"), servers = {
+@OpenAPIDefinition(info = @Info(title = "Bakery Order Service"), servers = {
 		@Server(url = "http://localhost:8080", description = "Local server.")})
 
 public interface CustomerController {
+	//This controls the CRUD operations for the Customer Table. This
+	//controller is for the Customer table which includes all CRUD operations.
 	
 	@Operation (
 		summary = "Returns a list of customers",
@@ -104,44 +109,44 @@ public interface CustomerController {
 	Customer createCustomer(String firstName, String lastName, String phone);
 				
 
-@Operation(
-		summary = "Updates an existing customer",
-		description = "Returns updated existing customer",
-		responses = {
-				@ApiResponse(
-						responseCode = "200",
-						description = "Returns updated existing customer",
-						content = @Content(
-								mediaType = "application/json",
-								schema = @Schema(implementation = Customer.class))),
-				@ApiResponse(
-						responseCode = "400",
-						description = "The request parameters are invalid",
-						content = @Content(mediaType = "application/json")),
-				@ApiResponse(
-						responseCode = "404",
-						description = "No customers were found.",
-						content = @Content(mediaType = "application/json")),
-	
-				@ApiResponse(
-						responseCode = "500",
-						description = "An unplanned error occured.",
-						content = @Content(mediaType = "application/json")),
+		@Operation(
+				summary = "Updates an existing customer",
+				description = "Returns updated existing customer",
+				responses = {
+						@ApiResponse(
+								responseCode = "200",
+								description = "Returns updated existing customer",
+								content = @Content(
+										mediaType = "application/json",
+										schema = @Schema(implementation = Customer.class))),
+						@ApiResponse(
+								responseCode = "400",
+								description = "The request parameters are invalid",
+								content = @Content(mediaType = "application/json")),
+						@ApiResponse(
+								responseCode = "404",
+								description = "No customers were found.",
+								content = @Content(mediaType = "application/json")),
+			
+						@ApiResponse(
+								responseCode = "500",
+								description = "An unplanned error occured.",
+								content = @Content(mediaType = "application/json")),
 
-		},
-		parameters = {
-				@Parameter(name = "customerId",
-						allowEmptyValue = false,
-						required = false,
-						description = "The customer's Id within the bakery database")
-		}
-		)
+				},
+				parameters = {
+						@Parameter(name = "customer_id",
+								allowEmptyValue = false,
+								required = false,
+								description = "The customer's ID within the bakery database"),
 
-@PutMapping("/updatecustomer")
-@ResponseStatus(code = HttpStatus.OK)
-Customer updateCustomer (
-		int customerId,
-		@Valid @RequestBody Customer updatedCustomer);
+				}
+				)
+		
+		@PutMapping("/updatecustomer")
+		//updating customer
+		@ResponseStatus(code = HttpStatus.OK)
+		Customer updateCustomer (int customerId, Customer updatedCustomer);
 
 @Operation(
 		summary = "Deletes an existing customer",
@@ -178,7 +183,7 @@ Customer updateCustomer (
 
 @DeleteMapping("/deletecustomer")
 @ResponseStatus(code = HttpStatus.OK)
-void deleteCustomer ( int deleteId);		
+void deleteCustomer (int customerId);		
 }
 
 

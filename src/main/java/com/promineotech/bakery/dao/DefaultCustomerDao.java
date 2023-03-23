@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -26,6 +27,7 @@ public class DefaultCustomerDao implements CustomerDao {
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
+	//Get method to read the entire list of customers from the Bakery database
 	@Override
 	public List<Customer> fetchAllCustomers() {
 		String sql = ""
@@ -38,6 +40,7 @@ public class DefaultCustomerDao implements CustomerDao {
 			return jdbcTemplate.query(sql, params, new RowMapper<>() {
 			
 	@Override
+	//this method maps the columns name to the variables in the customer table
 	public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
 			return Customer.builder()
 				.customerId(rs.getInt("customer_id"))
@@ -48,13 +51,15 @@ public class DefaultCustomerDao implements CustomerDao {
 		}});
 	}
 	@Override
+	
+	//create method to create new customer in the database
 	public Customer createCustomer(String firstName, String lastName, String phone) {
 		SqlParams params = new SqlParams();
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		params.sql = ""
 			+ "INSERT into customers "
-			+ "(first_name, last_name, phone)"
-			+ "VALUES (:first_name, :last_name, phone)";
+			+ "(first_name, last_name, phone) "
+			+ "VALUES (:first_name, :last_name, :phone)";
 		params.source.addValue("first_name", firstName);
 		params.source.addValue("last_name", lastName);
 		params.source.addValue("phone", phone);
@@ -74,6 +79,8 @@ public class DefaultCustomerDao implements CustomerDao {
 
 
 	@Override
+	
+	//method to update existing customer in database
 	public Customer updateCustomer(int customerId, Customer updatedCustomer) {
 		String sql = ""
 				+ "UPDATE customers "
@@ -100,7 +107,8 @@ public class DefaultCustomerDao implements CustomerDao {
 				.phone(updatedCustomer.getPhone())
 				.build();
 		}
-
+	
+		
 
 	@Override
 	public void deleteCustomer(int deleteId) {
@@ -112,8 +120,9 @@ public class DefaultCustomerDao implements CustomerDao {
 			
 			params.put("customer_id", deleteId);
 			if (jdbcTemplate.update(sql, params) == 0) throw new NoSuchElementException();
+	
 	}
 
-	}
+}
 
 

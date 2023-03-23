@@ -21,6 +21,7 @@ public class DefaultItemsService implements ItemsService {
 
 	@Transactional
 	@Override
+	//GET
 	public List<Items> fetchAllItems() {
 		List<Items> items = itemsDao.fetchAllItems();
 		if(items.isEmpty()) {

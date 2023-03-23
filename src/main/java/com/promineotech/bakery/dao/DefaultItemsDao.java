@@ -25,6 +25,7 @@ public class DefaultItemsDao implements ItemsDao {
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
 	@Override
+	//method to list all bakery items within the bakery items table
 	public List<Items> fetchAllItems() {
 		log.info("In items dao layer, fetch all bakery items");
 		String sql = ""
@@ -38,6 +39,7 @@ public class DefaultItemsDao implements ItemsDao {
 				return Items.builder()
 					.itemId(rs.getInt("item_id"))
 					.itemName(Item_name.valueOf(rs.getString("item_name")))
+					.itemFlavor(rs.getString("item_flavor"))
 					.itemPrice(rs.getBigDecimal("item_price"))
 					.build();
 			}});

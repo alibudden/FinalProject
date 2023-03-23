@@ -6,7 +6,7 @@ import com.promineotech.bakery.entity.Orders_Items;
 
 public interface OrderItemsService {
 	
-
+//GET
 			public List<Orders_Items> fetchAllOrdersAndItems();
 	
 

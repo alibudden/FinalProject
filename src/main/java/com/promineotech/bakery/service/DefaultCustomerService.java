@@ -2,6 +2,7 @@ package com.promineotech.bakery.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class DefaultCustomerService implements CustomerService {
 	
 
 	@Override
+	//GET
 	public List<Customer> fetchAllCustomers() {
 		List<Customer> customer = customerDao.fetchAllCustomers();
 		if(customer.isEmpty()) {
@@ -31,22 +33,26 @@ public class DefaultCustomerService implements CustomerService {
 	}
 
 	@Override
+	//POST
 	public Customer createCustomer(String firstName, String lastName, String phone) {
 		log.info("creates customers in the service layer");
 		return customerDao.createCustomer(firstName, lastName, phone);
 	}
 
 	@Override
+	//PUT
+
 	public Customer updateCustomer(int customerId, Customer updatedCustomer) {
 		log.info("updates customers in service layer");
 		return customerDao.updateCustomer(customerId, updatedCustomer);
 	}
 
 	@Override
-	public void deleteCustomer(int deleteId) {
-		log.info("The deleteCustomer method was called with customerId={}", deleteId);
+	//DELETE
+	public void deleteCustomer(int customerId) {
+		log.info("The deleteCustomer method was called with customerId={}", customerId);
 		
-		customerDao.deleteCustomer(deleteId);
+		customerDao.deleteCustomer(customerId);
 	}
 
 	

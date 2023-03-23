@@ -10,14 +10,16 @@ import com.promineotech.bakery.service.ItemsService;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RestController
+@Slf4j
+
 
 public class DefaultItemsController implements ItemsController {
 
 	@Autowired
 	private ItemsService itemsService;
 	
+	//GET
 	@Override
 	public List<Items> fetchAllItems() {
 		return itemsService.fetchAllItems();

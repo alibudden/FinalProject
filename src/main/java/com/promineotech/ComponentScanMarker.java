@@ -1,4 +1,4 @@
-package com.promineotec;
+package com.promineotech;
 
 public interface ComponentScanMarker {
 

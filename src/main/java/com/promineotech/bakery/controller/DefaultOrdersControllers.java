@@ -17,6 +17,9 @@ public class DefaultOrdersControllers implements OrdersController {
 	@Autowired
 	private OrdersService ordersService;
 	
+	
+	//GET
+	
 	@Override
 	public List<Orders> fetchAllOrders() {
 		return ordersService.fetchAllOrders();

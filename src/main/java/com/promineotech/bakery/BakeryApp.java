@@ -2,7 +2,8 @@ package com.promineotech.bakery;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import com.promineotec.ComponentScanMarker;
+
+import com.promineotech.ComponentScanMarker;
 
 @SpringBootApplication(scanBasePackageClasses = { ComponentScanMarker.class })
 public class BakeryApp  {

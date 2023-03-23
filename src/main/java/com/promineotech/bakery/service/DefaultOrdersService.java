@@ -21,6 +21,7 @@ public class DefaultOrdersService implements OrdersService {
 
 	@Transactional
 	@Override
+	//GET
 	public List<Orders> fetchAllOrders() {
 		List<Orders> orders = ordersDao.fetchAllOrders();
 		if(orders.isEmpty()) {

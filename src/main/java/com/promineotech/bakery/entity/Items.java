@@ -15,6 +15,7 @@ public class Items {
 	
 	private int itemId;
 	private Item_name itemName;
+	private String itemFlavor;
 	private BigDecimal itemPrice;
 	
 	

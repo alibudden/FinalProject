@@ -23,6 +23,7 @@ public class DefaultOrdersDao implements OrdersDao {
 	private NamedParameterJdbcTemplate jdbcTemplate;
 
 	@Override
+	//method to list all orders from the orders database table.
 	public List<Orders> fetchAllOrders() {
 		log.info("In orders dao layer, fetch all orders:");
 		
