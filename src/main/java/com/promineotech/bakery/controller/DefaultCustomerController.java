@@ -36,7 +36,7 @@ public class DefaultCustomerController implements CustomerController {
 	//UPDATE (PUT)
 
 	@Override
-	public Customer updateCustomer(int customerId, @Valid Customer updatedCustomer) {
+	public Customer updateCustomer(int customerId, Customer updatedCustomer) {
 		return customerService.updateCustomer(customerId, updatedCustomer);
 
 	}

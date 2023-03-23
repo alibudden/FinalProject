@@ -85,8 +85,8 @@ public class DefaultCustomerDao implements CustomerDao {
 		String sql = ""
 				+ "UPDATE customers "
 				+ "SET "
-				+ "first_name = :firstName, "
-				+ "last_name = :lastName, "
+				+ "first_name = :first_name, "
+				+ "last_name = :last_name, "
 				+ "phone = :phone "
 				+ "WHERE customer_id = :customer_id; ";
 			
